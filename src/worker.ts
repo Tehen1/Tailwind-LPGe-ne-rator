@@ -4,8 +4,11 @@ import { Hono } from "hono";
 export interface Env {
   AI: any;
 }
+const bindings: string[] = ["exampleBinding"];
+// Now we can pass bindings as the argument instead of { Bindings: Env; }
 
-const app = new Hono<{ Bindings: Env }>();
+const app = new Hono<{}>();
+app.get("/bindings", (c) => c.json(bindings));
 
 // GET /?query="How is your day today?"
 app.get("/", async (c) => {
@@ -18,7 +21,7 @@ app.get("/", async (c) => {
     {
       role: "system",
       content:
-        "You are a ultracoderAI an experienced Web designer and developer.",
+        "You are a ultracoderAI an experienced Web designer and developer full stack.",
     },
     { role: "user", content },
   ];
