@@ -12,7 +12,7 @@ app.get("/bindings", (c) => c.json(bindings));
 
 // GET /?query="How is your day today?"
 app.get("/", async (c) => {
-  const ai = new Ai(c.env.AI);
+  const ai = new Ai(c.env);
 
   const content =
     c.req.query("query") || "What is the origin of the phrase Hello, World";
